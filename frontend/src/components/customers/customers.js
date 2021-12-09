@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import './customers.css';
+import {getAllCustomers, createCustomer} from "../../services/serviceCustomer"
+
 // import axios from 'axios';
 
 class Customers extends Component {
@@ -7,13 +9,13 @@ class Customers extends Component {
         super(props);
         this.state = {
             customers: [],
-            random: ''
+            firstName: "",
+            lastName: ""
         }
     }
 
     componentDidMount() {
-        fetch('/api/customers')
-            .then(res => res.json())
+        getAllCustomers()
             .then(customers => this.setState({customers}, () => console.log('Customers fetched...', customers)))
     }
 
@@ -23,18 +25,25 @@ class Customers extends Component {
 
     submitHandler = e => {
         e.preventDefault()
-        console.log(this.state)
-        // axios.post('/api/customers', this.state)
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
+        const newCustomer = {firstName: this.state.firstName, lastName: this.state.lastName}
+        console.log(this.state);
+        console.log("Logging customer...", this.state.newCustomer);
+        createCustomer(newCustomer)
+            .then(response => {
+                console.log(response);
+            });
+
     }
 
+    updateList = (e) => {
+        console.log("Updating list!")
+        getAllCustomers()
+            .then(customers => this.setState({customers}, () => console.log('Customers fetched...', customers)))
+    }
+
+
     render() {
-        const { random } = this.state.random
+        const {_, firstName, lastName} = this.state
         return (
             <div>
                 <h2>Customers</h2>
@@ -45,14 +54,24 @@ class Customers extends Component {
                 </ul>
                 <form onSubmit={this.submitHandler}>
                     <div>
+                        <div>
                         <input type="text"
-                               name="Random"
-                               value={random}
+                               name="firstName"
+                               value={firstName}
                                onChange={this.changeHandler}
                         />
+                        </div>
+                        <div>
+                        <input type="text"
+                               name="lastName"
+                               value={lastName}
+                               onChange={this.changeHandler}
+                        />
+                        </div>
                     </div>
                     <button type="submit">Submit</button>
                 </form>
+                <button type="update" onClick={this.updateList}>Update List</button>
             </div>
         );
     }
