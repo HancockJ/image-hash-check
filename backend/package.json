@@ -4,10 +4,8 @@
   "description": "Backend server for API calls",
   "main": "server.js",
   "scripts": {
-    "start": "node ../frontend/server.js",
-    "server": "nodemon server.js",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "start": "nodemon server.js"
+
   },
   "author": "Jack Hancock",
   "license": "MIT",
