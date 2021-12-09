@@ -1,0 +1,20 @@
+{
+  "name": "expressbackend",
+  "version": "1.0.0",
+  "description": "Backend server for API calls",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ../frontend/server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Jack Hancock",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
