@@ -20,8 +20,7 @@ app.get('/api/customers', (req, res) => {
 
 app.post('/api/customers', (req, res) => {
     const customer = req.body;
-    // console.log('Adding customer', req.body.customer)
-    // console.log("BODY: ", req.body)
+    console.log('Adding customer', customer)
     customers.push({id: customerCount, firstName:customer.firstName, lastName: customer.lastName})
     customerCount++;
     res.json(customers);

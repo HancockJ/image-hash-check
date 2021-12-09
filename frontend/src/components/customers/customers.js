@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import './customers.css';
 import {getAllCustomers, createCustomer} from "../../services/serviceCustomer"
 
-// import axios from 'axios';
-
 class Customers extends Component {
     constructor(props) {
         super(props);
@@ -26,13 +24,10 @@ class Customers extends Component {
     submitHandler = e => {
         e.preventDefault()
         const newCustomer = {firstName: this.state.firstName, lastName: this.state.lastName}
-        console.log(this.state);
-        console.log("Logging customer...", this.state.newCustomer);
         createCustomer(newCustomer)
             .then(response => {
                 console.log(response);
             });
-
     }
 
     updateList = (e) => {
@@ -40,8 +35,7 @@ class Customers extends Component {
         getAllCustomers()
             .then(customers => this.setState({customers}, () => console.log('Customers fetched...', customers)))
     }
-
-
+    
     render() {
         const {_, firstName, lastName} = this.state
         return (
