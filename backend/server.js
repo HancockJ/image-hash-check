@@ -1,3 +1,4 @@
+const imageCheck = require('./util/ImageCheck');
 const express = require('express');
 const path = require('path');
 const app = express(),
@@ -6,7 +7,7 @@ const app = express(),
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../my-app/build')));
 
-customerCount = 4;
+let customerCount = 4;
 const customers = [
     {id: 0, firstName: "Jack", lastName: "Hancock"},
     {id: 1, firstName: "Jim", lastName: "Bean"},
@@ -24,6 +25,19 @@ app.post('/api/customers', (req, res) => {
     customers.push({id: customerCount, firstName:customer.firstName, lastName: customer.lastName})
     customerCount++;
     res.json(customers);
+});
+
+app.post('/api/imageCheck', (req, res) => {
+    const image = req.body.image;
+
+    if(!image){
+        console.log('No image sent')
+    }else{
+        console.log('Retrieved: ', image)
+        imageCheck.getFile(image);
+    }
+
+    res.json("This is a similar image!");
 });
 
 let port = 5000;
