@@ -35,7 +35,7 @@ class Customers extends Component {
         getAllCustomers()
             .then(customers => this.setState({customers}, () => console.log('Customers fetched...', customers)))
     }
-    
+
     render() {
         const {_, firstName, lastName} = this.state
         return (

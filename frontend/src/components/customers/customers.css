@@ -3,9 +3,14 @@ ul {
     padding: 0;
     width: 30%;
     margin: auto;
+    text-align-all: center;
 }
 li {
     font-size: 1.3rem;
     line-height: 2rem;
-    border-bottom: 1px dotted #777;
+    border-bottom: 2px solid #777;
+}
+
+h2 {
+    color: #61dafb;
 }

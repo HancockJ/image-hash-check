@@ -16,7 +16,7 @@
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -34,5 +34,277 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Arial';
+  font-weight: normal;
+}
+
+.wrapper {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  height: 100vh;
+  background-color: rgba(19, 66, 226);
+}
+
+/* HEADER */
+
+.header {
+  height: 13vh;
+  width: 100%;
+  color: white;
+  font-size: 1.2em;
+  margin-top: .5em;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logo-container {
+  height: 10vh;
+}
+
+.logo {
+  height: 70%;
+  padding-left: 3px;
+  padding-top: 3px;
+  margin: 0;
+}
+
+.logo-text {
+  font-size: .6em;
+  padding: 0;
+  margin: 0 0 0 3px;
+  text-align: center;
+}
+
+/* CONTROL PANEL */
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 20px 20px 20px;
+
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px);
+  box-shadow: 3px 3px 10px rgb(40, 40, 40);
+}
+
+.formField {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0px 5px 0px;
+  color: white;
+  font-size: .9em;
+}
+
+.control-input {
+  background-color: rgba(1, 1, 1, 0);
+  border-radius: 5px;
+  color: white;
+  border-color: white;
+  border-width: 0.1px;
+  height: 2em;
+  width: 60%;
+  margin-top: 2px;
+  padding-left: 5px;
+}
+
+
+/* HISTOGRAM */
+
+.histogram {
+  padding-top: 10px;
+  margin-top: 10px;
+  width: 100%;
+
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px);
+  box-shadow: 3px 3px 10px rgb(40, 40, 40);
+}
+
+.highcharts-yaxis {
+  height: 1em;
+}
+
+.chart{
+  height: 45vh;
+}
+
+/* ANALYSIS PANEL */
+
+.analysis-panel {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px);
+  border-radius: 20px;
+  color: #FAFA67;
+  font-size: .9em;
+  box-shadow: -3px 3px 10px rgb(40, 40, 40);
+  padding: 10px 20px 20px 20px;
+}
+
+.analysis-title {
+  color: #04EBF9;
+  text-align: center;
+  margin: 5px 0px 5px 0px;
+  font-weight: normal;
+}
+
+.control-title {
+  color: #04EBF9;
+  text-align: center;
+  margin: 5px 0px 5px 0px;
+  font-weight: normal;
+}
+
+.analysis-data {
+  margin-top: 5px;
+}
+
+@media only screen and (min-width: 650px){
+
+  .chart {
+    height: 50vw;
+  }
+
+  /* CONTROL PANEL */
+
+  .formField {
+    font-size: 1.1em;
+  }
+
+  .control-input {
+    height: 2.2em;
+  }
+
+  /* ANALYSIS PANEL */
+
+  .analysis-panel {
+    font-size: 1.1em;
+  }
+
+  .analysis-title {
+    font-size: 1.8em;
+    margin: 10px 0px 10px 0px;
+  }
+
+  .control-title {
+    font-size: 1.8em;
+    margin: 10px 0px 10px 0px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+
+  .wrapper {
+    width: 85%;
+  }
+
+  .hist-and-cont {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(40px);
+    border-radius: 20px;
+    box-shadow: -3px 3px 10px rgb(40, 40, 40);
+  }
+
+  .control-panel {
+    border-radius: unset;
+    background-color: unset;
+    backdrop-filter: unset;
+    box-shadow: unset;
+  }
+
+  .histogram {
+    border-radius: unset;
+    background-color: unset;
+    backdrop-filter: unset;
+    box-shadow: unset;
+  }
+
+  .chart {
+    height: 50vh;
+  }
+
+  .control-panel {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 10px;
+  }
+
+  .formField {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0px 10px 0px 10px;
+    color: white;
+    font-size: .9em;
+  }
+
+  .control-input {
+    background-color: rgba(1, 1, 1, 0);
+    border-radius: 5px;
+    color: white;
+    border-color: white;
+    border-width: 0.1px;
+    height: 2em;
+    width: 150px;
+    margin-top: 2px;
+  }
+
+  .control-title {
+    display: none;
+  }
+
+  .analysis-panel {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .analysis-container {
+    flex: 1;
+    padding: 1em;
+  }
+
+  .analysis-data {
+    text-align: left;
+  }
+
+}
+
+@media only screen and (min-width: 1600px) {
+  .content-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .analysis-panel {
+    width: 20%;
+    flex-direction: column;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .hist-and-cont {
+    width: 75%;
   }
 }
