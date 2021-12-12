@@ -1,4 +1,4 @@
-const imageCheck = require('./util/ImageCheck');
+const imageCheck = require('./util/imageCheck/imageCheck');
 const express = require('express');
 const path = require('path');
 const app = express(),
@@ -6,6 +6,9 @@ const app = express(),
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../my-app/build')));
+
+
+// CUSTOMER PANEL
 
 let customerCount = 4;
 const customers = [
@@ -21,24 +24,38 @@ app.get('/api/customers', (req, res) => {
 
 app.post('/api/customers', (req, res) => {
     const customer = req.body;
-    console.log('Adding customer', customer)
+    console.log('Adding customer', req)
     customers.push({id: customerCount, firstName:customer.firstName, lastName: customer.lastName})
     customerCount++;
     res.json(customers);
 });
 
+
+// IMAGE CHECK
+
+let similarImages = []
+
+app.use('/img', express.static('util/imageCheck/imgDatabase/'))
+
 app.post('/api/imageCheck', (req, res) => {
     const image = req.body.image;
-
-    if(!image){
+    if(!image.file){
         console.log('No image sent')
     }else{
-        console.log('Retrieved: ', image)
-        imageCheck.getFile(image);
+        imageCheck.getSimilarImages(image);
     }
-
     res.json("This is a similar image!");
 });
+
+app.post('/api/similar', (req, res) => {
+    similarImages = req.body.similarImages.split(',')
+    res.json(req.body);
+});
+
+app.get('/api/similarImages', (req, res) => {
+    res.json(similarImages)
+});
+
 
 let port = 5000;
 

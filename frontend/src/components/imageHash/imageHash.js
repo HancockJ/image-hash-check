@@ -2,29 +2,51 @@ import React, { Component } from "react";
 import "./imageHash.css"
 // import {getAllCustomers} from "../../services/serviceCustomer";
 import {getSimilarImages} from "../../services/serviceImageCheck";
+const backendImageDB = "http://localhost:5000/img/"
 
 class GetImage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            image: null,
+            image: {
+                path: null,
+                file: null,
+                error: null,
+            },
             similar: []
         };
     }
 
     onImageChange = event => {
         if (event.target.files && event.target.files[0]) {
-            console.log("RAN")
-            let img = event.target.files[0];
-            console.log(URL.createObjectURL(img));
-            console.log("Images:::::::::::::")
-            console.log(img)
-            this.setState({
-                image: URL.createObjectURL(img),
-            });
+            if(event.target.files[0].size > 75000){
+                this.setState({
+                    image: {
+                        path: null,
+                        file: null,
+                        error: "Image is too large."
+                    }
+                })
+                return
+            }
+            let reader = new FileReader()
+            reader.readAsDataURL(event.target.files[0])
+            reader.onload = () => {
+                this.setState({
+                    image: {
+                        path: URL.createObjectURL(event.target.files[0]),
+                        file: reader.result,
+                        error: null
+                    }
+                })
+            }
         } else {
             this.setState({
-                image: "No image chosen.",
+                image: {
+                    path: null,
+                    file: null,
+                    error: "No image chosen.",
+                }
             });
         }
 
@@ -33,8 +55,7 @@ class GetImage extends Component {
     findSimilar = (e) => {
         console.log("Finding all similar images!")
         getSimilarImages(this.state.image)
-            .then(similar => this.setState({similar}, () => console.log('Images fetched...', similar)))
-
+            .then(similar => this.setState({similar}, () => console.log('Images fetched...', this.state.similar)))
     }
 
     render() {
@@ -42,14 +63,14 @@ class GetImage extends Component {
             <div>
                 <div>
                 <h1>Upload Image</h1>
-                <input type="file" name="myImage" onChange={this.onImageChange} />
-                <img src={this.state.image} alt="" />
-                <p> image url={this.state.image} </p>
+                <input type="file" name="myImage" accept=".jpg, .jpeg, .png" onChange={this.onImageChange} />
+                <img src={this.state.image.path} alt="" />
+                <p>{this.state.image.error} </p>
                     <button type="findSimilar" onClick={this.findSimilar}>Find similar images</button>
                 </div>
                 <div className="row">
                     <div className="column">
-                        <img src={this.state.image} alt="" />
+                        <img src={backendImageDB + this.state.similar[0]} alt="" />
                     </div>
                 </div>
             </div>

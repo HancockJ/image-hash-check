@@ -13,7 +13,7 @@ export const Header = () => {
 
     return(
         <div style={headerStyle}>
-            <h1>Jack's Playground</h1>
+            <h1>Jack's Image Checker</h1>
         </div>
     )
 }

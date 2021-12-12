@@ -37,7 +37,8 @@ class Customers extends Component {
     }
 
     render() {
-        const {_, firstName, lastName} = this.state
+        const firstName = this.state.firstName
+        const lastName = this.state.lastName
         return (
             <div>
                 <h2>Customers</h2>
