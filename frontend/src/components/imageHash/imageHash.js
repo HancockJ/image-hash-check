@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./imageHash.css"
 // import {getAllCustomers} from "../../services/serviceCustomer";
-import {getSimilarImages} from "../../services/serviceImageCheck";
+import {getSimilarImages, showSimilarImages} from "../../services/serviceImageCheck";
 const backendImageDB = "http://localhost:5000/img/"
 
 class GetImage extends Component {
@@ -40,6 +40,7 @@ class GetImage extends Component {
                     }
                 })
             }
+            this.findSimilar(event)
         } else {
             this.setState({
                 image: {
@@ -55,10 +56,16 @@ class GetImage extends Component {
     findSimilar = (e) => {
         console.log("Finding all similar images!")
         getSimilarImages(this.state.image)
+            .then(similar => console.log('Images fetched...', this.state.similar))
+    }
+
+    showSimilar = (e) => {
+        showSimilarImages()
             .then(similar => this.setState({similar}, () => console.log('Images fetched...', this.state.similar)))
     }
 
     render() {
+        this.findSimilar()
         return (
             <div>
                 <div>
@@ -66,7 +73,7 @@ class GetImage extends Component {
                 <input type="file" name="myImage" accept=".jpg, .jpeg, .png" onChange={this.onImageChange} />
                 <img src={this.state.image.path} alt="" />
                 <p>{this.state.image.error} </p>
-                    <button type="findSimilar" onClick={this.findSimilar}>Find similar images</button>
+                    <button type="showSimilar" onClick={this.showSimilar}>Find similar images</button>
                 </div>
                 <div className="row">
                     <div className="column">

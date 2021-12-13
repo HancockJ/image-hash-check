@@ -20,7 +20,7 @@ def getHashDatabase(directory, files):
 def findSimilarImages(imageToCheck, hashDB):
     similarImages = []
     for selected in hashDB:
-        if ((hashDB[selected] - imageToCheck["hash"]) < 2):
+        if ((hashDB[selected] - imageToCheck["hash"]) < 1):
             similarImages.append(selected)
     return similarImages
 
@@ -32,7 +32,6 @@ def postToBackend(similarImages):
         jsonData += ","
     jsonData = jsonData[:-1]
     data = {"similarImages" : jsonData}
-    print(data)
     x = requests.post(url, json=data)
     return x
 
@@ -54,4 +53,5 @@ similarImages = findSimilarImages(imageToCheck, hashDatabase)
 
 response = postToBackend(similarImages)
 
-# print(similarImages)
+print(similarImages)
+# /Users/jackhancock/Desktop/Coding/webDevelopment/reactPlayground/backend/util/imageCheck/imgDatabase/cryptopunks/1523.jpg

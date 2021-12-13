@@ -6,6 +6,10 @@ export async function getSimilarImages(image) {
             body: JSON.stringify({image: image})
         }
     )
+
+}
+
+export async function showSimilarImages() {
     console.log("About to find similar images")
     try{
         const response = await fetch('/api/similarImages');
@@ -14,5 +18,3 @@ export async function getSimilarImages(image) {
         return [];
     }
 }
-
-

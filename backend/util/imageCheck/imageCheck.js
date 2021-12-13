@@ -19,7 +19,7 @@ function getSimilarImages(image) {
 
 function runPython() {
     let options = {
-        args: ["/Users/jackhancock/Desktop/Coding/webDevelopment/reactPlayground/backend/util/imageCheck/imgDatabase/UK/1.jpeg"]
+        args: ["/Users/jackhancock/Desktop/Coding/webDevelopment/reactPlayground/backend/util/imageCheck/image.jpg"]
     };
 
     PythonShell.run('util/imageCheck/imageCheck.py', options , function (err, results) {
