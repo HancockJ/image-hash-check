@@ -1,4 +1,5 @@
 export async function getSimilarImages(image) {
+    console.log(image)
     await fetch(`/api/imageCheck`,
         {
             method: 'POST',
@@ -10,11 +11,11 @@ export async function getSimilarImages(image) {
 }
 
 export async function showSimilarImages() {
-    console.log("About to find similar images")
     try{
         const response = await fetch('/api/similarImages');
         return await response.json();
     }catch(error) {
-        return [];
+        // console.log(error)
+        return error;
     }
 }

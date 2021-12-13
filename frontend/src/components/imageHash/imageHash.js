@@ -54,18 +54,22 @@ class GetImage extends Component {
     };
 
     findSimilar = (e) => {
-        console.log("Finding all similar images!")
         getSimilarImages(this.state.image)
-            .then(similar => console.log('Images fetched...', this.state.similar))
+            .then()
     }
 
     showSimilar = (e) => {
         showSimilarImages()
-            .then(similar => this.setState({similar}, () => console.log('Images fetched...', this.state.similar)))
+            .then(similar => this.setState({similar}, () => console.log(this.state.similar)))
     }
 
     render() {
         this.findSimilar()
+        let listOfImages = this.state.similar.map((image)=>{
+            return (
+                <img src={backendImageDB + image} alt="" key={image}/>
+        )})
+
         return (
             <div>
                 <div>
@@ -77,7 +81,7 @@ class GetImage extends Component {
                 </div>
                 <div className="row">
                     <div className="column">
-                        <img src={backendImageDB + this.state.similar[0]} alt="" />
+                        {listOfImages}
                     </div>
                 </div>
             </div>

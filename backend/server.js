@@ -48,7 +48,12 @@ app.post('/api/imageCheck', (req, res) => {
 });
 
 app.post('/api/similar', (req, res) => {
-    similarImages = req.body.similarImages.split(',')
+    console.log('LOGGING IMAGES', req.body.similarImages)
+    if(req.body.similarImages === "[ '' ]"){
+        similarImages = []
+    }else{
+        similarImages = req.body.similarImages.split(',')
+    }
     res.json(req.body);
 });
 
