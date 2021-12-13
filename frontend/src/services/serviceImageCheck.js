@@ -1,5 +1,4 @@
 export async function getSimilarImages(image) {
-    console.log(image)
     await fetch(`/api/imageCheck`,
         {
             method: 'POST',

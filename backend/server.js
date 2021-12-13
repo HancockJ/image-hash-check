@@ -48,9 +48,9 @@ app.post('/api/imageCheck', (req, res) => {
 });
 
 app.post('/api/similar', (req, res) => {
-    console.log('LOGGING IMAGES', req.body.similarImages)
-    if(req.body.similarImages === "[ '' ]"){
-        similarImages = []
+    console.log('LOGGING IMAGES :' + req.body.similarImages + ':')
+    if(req.body.similarImages === ""){
+        similarImages = ['NONE']
     }else{
         similarImages = req.body.similarImages.split(',')
     }

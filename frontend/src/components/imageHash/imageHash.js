@@ -65,10 +65,19 @@ class GetImage extends Component {
 
     render() {
         this.findSimilar()
-        let listOfImages = this.state.similar.map((image)=>{
-            return (
-                <img src={backendImageDB + image} alt="" key={image}/>
-        )})
+        let listOfImages
+        if (this.state.similar[0] === "NONE") {
+            listOfImages = this.state.similar.map((image)=>{
+                return (
+                    <p key={0}>No similar images found.</p>
+                )})
+        }
+        else{
+            listOfImages = this.state.similar.map((image)=>{
+                return (
+                    <img src={backendImageDB + image} alt="" key={image}/>
+                )})
+        }
 
         return (
             <div>
