@@ -6,7 +6,7 @@ action.
 
 ## Overview
 The goal of this project was to create a website that would allow a user 
-to upload their own image and then search through a large database of to find all 
+to upload their own image and then search through a large database of images to find all 
 similar images.
 
 The idea behind this project was to create a way for someone to search a blockchain 
