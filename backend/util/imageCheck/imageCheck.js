@@ -1,8 +1,14 @@
 // Uses the python imageHash PIL to find similar images and returns them
 let {PythonShell} = require('python-shell')
 
+// Base function for backend.
+function getSimilarImages(image) {
+    downloadFile(image)
+    runPython()
+}
+
+// Takes only the base64 of image to download
 function downloadFile(image) {
-    // Takes only the base64 of image to download
     let base64 = (image.file.split(","))[1]
     require("fs").writeFile("util/imageCheck/image.jpg",base64, 'base64', function(err) {
         if(err){
@@ -11,12 +17,7 @@ function downloadFile(image) {
     });
 }
 
-function getSimilarImages(image) {
-    const path = "util/imageCheck/image.jpg"
-    downloadFile(image)
-    runPython()
-}
-
+//This function starts a child process which will run the python script to search images.
 function runPython() {
     let options = {
         args: ["/Users/jackhancock/Desktop/Coding/webDevelopment/reactPlayground/backend/util/imageCheck/image.jpg"]
@@ -24,12 +25,11 @@ function runPython() {
 
     PythonShell.run('util/imageCheck/imageCheck.py', options , function (err, results) {
         if (err) throw err;
-        // console.log('results: %j', results[0]);
     })
 }
 
+// Gets images, converts to base64 and sends back to frontend
 function uploadImages(similarImages) {
-    // Gets images, converts to base64 and sends back to frontend
     let imagePaths = similarImages.split(',')
     console.log("SIMILAR IMAGES: ", imagePaths)
 }

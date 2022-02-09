@@ -13,7 +13,7 @@ export const Header = () => {
 
     return(
         <div style={headerStyle}>
-            <h1>Jack's Image Checker</h1>
+            <h1>Jack Hancock's Reverse NFT image search</h1>
         </div>
     )
 }

@@ -13,7 +13,8 @@ def getHashFromPath(path):
 def getHashDatabase(directory, files):
     hashDB = {}
     for file in files:
-        hashDB[str("/UK/" + file)] = getHashFromPath(directory + file)
+        if('jpeg' in file):
+            hashDB[str("/UK/" + file)] = getHashFromPath(directory + file)
     return hashDB.copy()
 
 
@@ -54,4 +55,3 @@ similarImages = findSimilarImages(imageToCheck, hashDatabase)
 response = postToBackend(similarImages)
 
 print(similarImages)
-# /Users/jackhancock/Desktop/Coding/webDevelopment/reactPlayground/backend/util/imageCheck/imgDatabase/cryptopunks/1523.jpg

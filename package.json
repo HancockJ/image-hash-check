@@ -10,10 +10,12 @@
   "author": "Jack Hancock",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "web3": "^1.6.1"
   },
   "dependencies": {
     "concurrently": "^6.4.0",
-    "python-shell": "^3.0.1"
+    "python-shell": "^3.0.1",
+    "react-web3-provider": "^1.1.2"
   }
 }
